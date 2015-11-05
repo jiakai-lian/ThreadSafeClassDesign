@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4644C6051BEB28480016D58F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6041BEB28480016D58F /* main.m */; };
+		4644C60E1BEB29B10016D58F /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C60D1BEB29B10016D58F /* Item.m */; settings = {ASSET_TAGS = (); }; };
+		4644C6151BEC14220016D58F /* ItemAtomic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6141BEC14220016D58F /* ItemAtomic.m */; settings = {ASSET_TAGS = (); }; };
+		4644C6191BEC16810016D58F /* ItemSyncSelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6181BEC16810016D58F /* ItemSyncSelf.m */; settings = {ASSET_TAGS = (); }; };
+		4644C6291BEC291E0016D58F /* ItemAsyncSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6281BEC291E0016D58F /* ItemAsyncSetter.m */; settings = {ASSET_TAGS = (); }; };
+		4644C62D1BEC29BF0016D58F /* ItemSyncQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C62C1BEC29BF0016D58F /* ItemSyncQueue.m */; settings = {ASSET_TAGS = (); }; };
+		4644C6311BEC2E690016D58F /* ItemBarrierAsyncSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6301BEC2E690016D58F /* ItemBarrierAsyncSetter.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,19 @@
 /* Begin PBXFileReference section */
 		4644C6011BEB28480016D58F /* ThreadSafeClassDesign */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreadSafeClassDesign; sourceTree = BUILT_PRODUCTS_DIR; };
 		4644C6041BEB28480016D58F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4644C60C1BEB29B10016D58F /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		4644C60D1BEB29B10016D58F /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		4644C6131BEC14220016D58F /* ItemAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAtomic.h; sourceTree = "<group>"; };
+		4644C6141BEC14220016D58F /* ItemAtomic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemAtomic.m; sourceTree = "<group>"; };
+		4644C6171BEC16810016D58F /* ItemSyncSelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSyncSelf.h; sourceTree = "<group>"; };
+		4644C6181BEC16810016D58F /* ItemSyncSelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSyncSelf.m; sourceTree = "<group>"; };
+		4644C61B1BEC1CC30016D58F /* ItemProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemProtocol.h; sourceTree = "<group>"; };
+		4644C6271BEC291E0016D58F /* ItemAsyncSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAsyncSetter.h; sourceTree = "<group>"; };
+		4644C6281BEC291E0016D58F /* ItemAsyncSetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemAsyncSetter.m; sourceTree = "<group>"; };
+		4644C62B1BEC29BF0016D58F /* ItemSyncQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSyncQueue.h; sourceTree = "<group>"; };
+		4644C62C1BEC29BF0016D58F /* ItemSyncQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSyncQueue.m; sourceTree = "<group>"; };
+		4644C62F1BEC2E690016D58F /* ItemBarrierAsyncSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemBarrierAsyncSetter.h; sourceTree = "<group>"; };
+		4644C6301BEC2E690016D58F /* ItemBarrierAsyncSetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemBarrierAsyncSetter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +60,14 @@
 		4644C5F81BEB28480016D58F = {
 			isa = PBXGroup;
 			children = (
-				4644C6031BEB28480016D58F /* ThreadSafeClassDesign */,
 				4644C6021BEB28480016D58F /* Products */,
+				4644C62E1BEC2E440016D58F /* Scenario6 */,
+				4644C60B1BEB29A20016D58F /* Scenario1 */,
+				4644C6121BEC14100016D58F /* Scenario2 */,
+				4644C6161BEC15B30016D58F /* Scenario3 */,
+				4644C62A1BEC29AF0016D58F /* Scenario4 */,
+				4644C6261BEC29050016D58F /* Scenario5 */,
+				4644C6031BEB28480016D58F /* ThreadSafeClassDesign */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +83,63 @@
 			isa = PBXGroup;
 			children = (
 				4644C6041BEB28480016D58F /* main.m */,
+				4644C61B1BEC1CC30016D58F /* ItemProtocol.h */,
 			);
 			path = ThreadSafeClassDesign;
+			sourceTree = "<group>";
+		};
+		4644C60B1BEB29A20016D58F /* Scenario1 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C60C1BEB29B10016D58F /* Item.h */,
+				4644C60D1BEB29B10016D58F /* Item.m */,
+			);
+			path = Scenario1;
+			sourceTree = "<group>";
+		};
+		4644C6121BEC14100016D58F /* Scenario2 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C6131BEC14220016D58F /* ItemAtomic.h */,
+				4644C6141BEC14220016D58F /* ItemAtomic.m */,
+			);
+			path = Scenario2;
+			sourceTree = "<group>";
+		};
+		4644C6161BEC15B30016D58F /* Scenario3 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C6171BEC16810016D58F /* ItemSyncSelf.h */,
+				4644C6181BEC16810016D58F /* ItemSyncSelf.m */,
+			);
+			path = Scenario3;
+			sourceTree = "<group>";
+		};
+		4644C6261BEC29050016D58F /* Scenario5 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C6271BEC291E0016D58F /* ItemAsyncSetter.h */,
+				4644C6281BEC291E0016D58F /* ItemAsyncSetter.m */,
+			);
+			path = Scenario5;
+			sourceTree = "<group>";
+		};
+		4644C62A1BEC29AF0016D58F /* Scenario4 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C62B1BEC29BF0016D58F /* ItemSyncQueue.h */,
+				4644C62C1BEC29BF0016D58F /* ItemSyncQueue.m */,
+			);
+			path = Scenario4;
+			sourceTree = "<group>";
+		};
+		4644C62E1BEC2E440016D58F /* Scenario6 */ = {
+			isa = PBXGroup;
+			children = (
+				4644C62F1BEC2E690016D58F /* ItemBarrierAsyncSetter.h */,
+				4644C6301BEC2E690016D58F /* ItemBarrierAsyncSetter.m */,
+			);
+			path = Scenario6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4644C6191BEC16810016D58F /* ItemSyncSelf.m in Sources */,
+				4644C60E1BEB29B10016D58F /* Item.m in Sources */,
+				4644C6291BEC291E0016D58F /* ItemAsyncSetter.m in Sources */,
 				4644C6051BEB28480016D58F /* main.m in Sources */,
+				4644C6151BEC14220016D58F /* ItemAtomic.m in Sources */,
+				4644C6311BEC2E690016D58F /* ItemBarrierAsyncSetter.m in Sources */,
+				4644C62D1BEC29BF0016D58F /* ItemSyncQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +321,7 @@
 				4644C60A1BEB28480016D58F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
