@@ -12,32 +12,24 @@
 #import "ItemBarrierAsyncSetter.h"
 #import "ItemSyncQueue.h"
 #import "ItemSyncSelf.h"
+#import "ItemLock.h"
 
 #define TICK   NSDate *startTime = [NSDate date]
 #define TOCK   NSLog(@"%@ Time: %f", NSStringFromClass(item.class), -[startTime timeIntervalSinceNow])
 
-static const NSUInteger ITERATION_COUNT = 100000;
-//static const NSUInteger SLEEP_INTERVAL = 1;
+static const NSUInteger DISPATCH_QUEUE_COUNT = 100000;
+static const NSUInteger ITERATION_COUNT = 1;
 
 void testScenario(id <ItemProtocol> item) {
     @autoreleasepool {
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
         TICK;
-
-        dispatch_apply(ITERATION_COUNT, queue, ^(size_t i) {
-            if (i % 5) {
-                //reader
-//                sleep(SLEEP_INTERVAL);
-                [item description];
-            }
-            else {
-                //writer
-                item.itemId = nil;
-//                sleep(SLEEP_INTERVAL);
-                item.itemId = [NSString stringWithFormat:@"%zu",
-                                                         i];
-            }
+        
+        dispatch_apply(DISPATCH_QUEUE_COUNT, queue, ^(size_t i) {
+            item.itemCount++;
+//            NSLog(@"count = %ld", item.itemCount);
+            [item itemCount];
         });
 
         TOCK;
@@ -45,24 +37,17 @@ void testScenario(id <ItemProtocol> item) {
 }
 
 int main(int argc, const char *argv[]) {
-    testScenario([Item itemWithItemId:@"1"
-                             itemName:@"item1"
-                      itemDescription:@"item1"]);
-    testScenario([ItemAtomic itemWithItemId:@"1"
-                                   itemName:@"item1"
-                            itemDescription:@"item1"]);
-    testScenario([ItemSyncSelf itemWithItemId:@"1"
-                                     itemName:@"item1"
-                              itemDescription:@"item1"]);
-    testScenario([ItemSyncQueue itemWithItemId:@"1"
-                                      itemName:@"item1"
-                               itemDescription:@"item1"]);
-    testScenario([ItemAsyncSetter itemWithItemId:@"1"
-                                        itemName:@"item1"
-                                 itemDescription:@"item1"]);
-    testScenario([ItemBarrierAsyncSetter itemWithItemId:@"1"
-                                               itemName:@"item1"
-                                        itemDescription:@"item1"]);
+    
+    for(NSUInteger i=0; i<ITERATION_COUNT; i++)
+    {
+        testScenario([[Item alloc] init]);
+        testScenario([[ItemAtomic alloc] init]);
+        testScenario([[ItemLock alloc] init]);
+        testScenario([[ItemSyncSelf alloc] init]);
+        testScenario([[ItemSyncQueue alloc] init]);
+        testScenario([[ItemAsyncSetter alloc] init]);
+        testScenario([[ItemBarrierAsyncSetter alloc] init]);
+    }
 
     return 0;
 }

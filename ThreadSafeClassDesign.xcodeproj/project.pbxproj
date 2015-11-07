@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E003CD01BEE096B005955FD /* ItemLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003CCF1BEE096B005955FD /* ItemLock.m */; };
 		4644C6051BEB28480016D58F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6041BEB28480016D58F /* main.m */; };
 		4644C60E1BEB29B10016D58F /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C60D1BEB29B10016D58F /* Item.m */; settings = {ASSET_TAGS = (); }; };
 		4644C6151BEC14220016D58F /* ItemAtomic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4644C6141BEC14220016D58F /* ItemAtomic.m */; settings = {ASSET_TAGS = (); }; };
@@ -29,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E003CCE1BEE096B005955FD /* ItemLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLock.h; sourceTree = "<group>"; };
+		3E003CCF1BEE096B005955FD /* ItemLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLock.m; sourceTree = "<group>"; };
 		4644C6011BEB28480016D58F /* ThreadSafeClassDesign */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreadSafeClassDesign; sourceTree = BUILT_PRODUCTS_DIR; };
 		4644C6041BEB28480016D58F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4644C60C1BEB29B10016D58F /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
@@ -57,16 +60,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E003CCD1BEE0889005955FD /* Scenario7 */ = {
+			isa = PBXGroup;
+			children = (
+				3E003CCE1BEE096B005955FD /* ItemLock.h */,
+				3E003CCF1BEE096B005955FD /* ItemLock.m */,
+			);
+			path = Scenario7;
+			sourceTree = "<group>";
+		};
 		4644C5F81BEB28480016D58F = {
 			isa = PBXGroup;
 			children = (
 				4644C6021BEB28480016D58F /* Products */,
-				4644C62E1BEC2E440016D58F /* Scenario6 */,
+				3E003CCD1BEE0889005955FD /* Scenario7 */,
 				4644C60B1BEB29A20016D58F /* Scenario1 */,
 				4644C6121BEC14100016D58F /* Scenario2 */,
 				4644C6161BEC15B30016D58F /* Scenario3 */,
 				4644C62A1BEC29AF0016D58F /* Scenario4 */,
 				4644C6261BEC29050016D58F /* Scenario5 */,
+				4644C62E1BEC2E440016D58F /* Scenario6 */,
 				4644C6031BEB28480016D58F /* ThreadSafeClassDesign */,
 			);
 			sourceTree = "<group>";
@@ -203,6 +216,7 @@
 				4644C6291BEC291E0016D58F /* ItemAsyncSetter.m in Sources */,
 				4644C6051BEB28480016D58F /* main.m in Sources */,
 				4644C6151BEC14220016D58F /* ItemAtomic.m in Sources */,
+				3E003CD01BEE096B005955FD /* ItemLock.m in Sources */,
 				4644C6311BEC2E690016D58F /* ItemBarrierAsyncSetter.m in Sources */,
 				4644C62D1BEC29BF0016D58F /* ItemSyncQueue.m in Sources */,
 			);
@@ -246,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -282,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

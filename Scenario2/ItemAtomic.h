@@ -11,19 +11,7 @@
 
 @interface ItemAtomic : NSObject<ItemProtocol>
 
-@property(atomic, copy) NSString *itemId;
-@property(atomic, copy) NSString *itemName;
-@property(atomic, copy) NSString *itemDescription;
-
-- (instancetype)initWithItemId:(NSString *)itemId
-                      itemName:(NSString *)itemName
-               itemDescription:(NSString *)itemDescription;
-
-+ (instancetype)itemWithItemId:(NSString *)itemId
-                      itemName:(NSString *)itemName
-               itemDescription:(NSString *)itemDescription;
-
-- (NSString *)description;
+@property(atomic, assign) NSUInteger itemCount;
 
 
 @end

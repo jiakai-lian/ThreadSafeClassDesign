@@ -1,15 +1,15 @@
 //
-//  ItemSyncSelf.h
+//  ItemLock.h
 //  ThreadSafeClassDesign
 //
-//  Created by bluecats on 6/11/2015.
+//  Created by jiakai lian on 7/11/2015.
 //  Copyright © 2015 jiakai. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "ItemProtocol.h"
 
-@interface ItemSyncSelf : NSObject<ItemProtocol>
+@interface ItemLock : NSObject <ItemProtocol>
 
 @property(nonatomic, assign) NSUInteger itemCount;
 

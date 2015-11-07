@@ -9,6 +9,10 @@ A personal investigation on thread safe class design (Objective C &amp; Swift2.0
 - dispatch_sync getter, dispatch_barrier_async setter
 - dispatch_sync getter, muatibilty setter
 
+Why lock for read action
+
+no protection 2/10000
+
 References:
 
 https://www.objc.io/issues/2-concurrency/thread-safe-class-design/

@@ -10,87 +10,19 @@
 
 @implementation ItemBarrierAsyncSetter
 
-@synthesize itemId = _itemId;
-@synthesize itemName = _itemName;
-@synthesize itemDescription = _itemDescription;
+@synthesize itemCount = _itemCount;
 
-- (instancetype)initWithItemId:(NSString *)itemId
-                      itemName:(NSString *)itemName
-               itemDescription:(NSString *)itemDescription {
-    self = [self init];
-    if (self) {
-        _itemId = [itemId copy];
-        _itemName = [itemName copy];
-        _itemDescription = [itemDescription copy];
-    }
-    
-    return self;
-}
-
-+ (instancetype)itemWithItemId:(NSString *)itemId
-                      itemName:(NSString *)itemName
-               itemDescription:(NSString *)itemDescription {
-    return [[self alloc] initWithItemId:itemId
-                               itemName:itemName
-                        itemDescription:itemDescription];
-}
-
-- (NSString *)description {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ",
-                                    NSStringFromClass([self class])];
-    [description appendFormat:@"self.itemDescription=%@",
-     self.itemDescription];
-    [description appendFormat:@", self.itemId=%@",
-     self.itemId];
-    [description appendFormat:@", self.itemName=%@",
-     self.itemName];
-    [description appendString:@">"];
-    return description;
-}
-
-
-#pragma mark - Public Properties
-
-- (NSString *)itemId {
-    __block NSString * itemIdStr;
+- (NSUInteger)itemCount {
+    __block NSUInteger count;
     dispatch_sync(self.syncQueue, ^{
-        itemIdStr = _itemId;
+        count = _itemCount;
     });
-    return itemIdStr;
+    return count;
 }
 
-- (void)setItemId:(NSString *)itemId {
+- (void)setitemCount:(NSUInteger)itemCount {
     dispatch_barrier_async(self.syncQueue, ^{
-        _itemId = itemId;
-    });
-}
-
-
-- (NSString *)itemName {
-    __block NSString * itemNameStr;
-    dispatch_sync(self.syncQueue, ^{
-        itemNameStr = _itemName;
-    });
-    return itemNameStr;
-}
-
-- (void)setItemName:(NSString *)itemName {
-    dispatch_barrier_async(self.syncQueue, ^{
-        _itemName = itemName;
-    });
-}
-
-- (NSString *)itemDescription {
-    __block NSString * itemDescriptionStr;
-    dispatch_sync(self.syncQueue, ^{
-        itemDescriptionStr = _itemDescription;
-    });
-    return itemDescriptionStr;
-}
-
-- (void)setItemDescription:(NSString *)itemDescription {
-    dispatch_barrier_async(self.syncQueue, ^{
-        _itemDescription = itemDescription;
+        _itemCount = itemCount;
     });
 }
 

@@ -9,14 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol ItemProtocol <NSObject>
-@property(nonatomic, copy) NSString *itemId;
-@property(nonatomic, copy) NSString *itemName;
-
-+ (instancetype)itemWithItemId:(NSString *)itemId
-                      itemName:(NSString *)itemName
-               itemDescription:(NSString *)itemDescription;
-
-- (NSString *)description;
-
+@property(nonatomic, assign) NSUInteger itemCount;
 
 @end
