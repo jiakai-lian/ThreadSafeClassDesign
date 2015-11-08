@@ -27,14 +27,31 @@ void testScenario(id <ItemProtocol> item) {
         TICK;
         
         dispatch_apply(DISPATCH_QUEUE_COUNT, queue, ^(size_t i) {
-            item.itemCount++;
+            [item setItemCount:[item itemCount]+1];
 //            NSLog(@"count = %ld", item.itemCount);
-            [item itemCount];
+//            [item itemCount];
         });
 
         TOCK;
     }
 }
+
+//void test(ItemAtomic * item) {
+//    @autoreleasepool {
+//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        
+//        TICK;
+//        
+//        dispatch_apply(DISPATCH_QUEUE_COUNT, queue, ^(size_t i) {
+////            [item setItemCount:[item itemCount]+1];
+//            item.itemCount++;
+//            //            NSLog(@"count = %ld", item.itemCount);
+//            //            [item itemCount];
+//        });
+//        
+//        TOCK;
+//    }
+//}
 
 int main(int argc, const char *argv[]) {
     
