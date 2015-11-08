@@ -20,7 +20,7 @@
     return count;
 }
 
-- (void)setitemCount:(NSUInteger)itemCount {
+- (void)setItemCount:(NSUInteger)itemCount {
     dispatch_barrier_async(self.syncQueue, ^{
         _itemCount = itemCount;
     });

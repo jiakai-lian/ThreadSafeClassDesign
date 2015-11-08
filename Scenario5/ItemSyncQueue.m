@@ -21,7 +21,7 @@
     return count;
 }
 
-- (void)setitemCount:(NSUInteger)itemCount {
+- (void)setItemCount:(NSUInteger)itemCount {
     dispatch_sync(self.syncQueue, ^{
         _itemCount = itemCount;
     });

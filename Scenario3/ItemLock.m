@@ -29,7 +29,7 @@
     return count;
 }
 
-- (void)setitemCount:(NSUInteger)itemCount {
+- (void)setItemCount:(NSUInteger)itemCount {
     [self.lock lock];
         _itemCount = itemCount;
     [self.lock unlock];

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @protocol ItemProtocol <NSObject>
-@property(nonatomic, assign) NSUInteger itemCount;
 
+
+- (NSUInteger)itemCount;
+
+- (void)setItemCount:(NSUInteger)itemCount;
 @end

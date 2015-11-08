@@ -18,7 +18,7 @@
     }
 }
 
-- (void)setitemCount:(NSUInteger)itemCount {
+- (void)setItemCount:(NSUInteger)itemCount {
     @synchronized (self) {
         _itemCount = itemCount;
     }
