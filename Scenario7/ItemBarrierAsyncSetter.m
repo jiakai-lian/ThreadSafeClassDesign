@@ -31,7 +31,7 @@
     static dispatch_queue_t queue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+        queue = dispatch_queue_create("com.jiakai.ItemBarrierAsyncSetter", DISPATCH_QUEUE_CONCURRENT);
     });
     
     return queue;
