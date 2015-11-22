@@ -22,6 +22,7 @@ Proposed Approaches：
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
 | No Protection			| N/A | N/A | N |
 | Atomic      			| N/A | N/A | N | Atomic cannot ensure threadsafe. It can reduce the chance of crash, but unable to prevent it from happening.|
+| NSLock	| N/A | N/A | Y | Each actions are excuted exclusively due to the NSLock protection.
 | @sychornized(self)	| N/A | N/A | Y | Each actions are excuted exclusively due to the syncorized protection.
 | SerialQueue      		| Sync | Sync | Y | The queue only excute one action at a time
 | SerialQueue      		| Sync | Async | Y |As same as above
@@ -69,6 +70,9 @@ FAQ:
 References:
 
 https://www.objc.io/issues/2-concurrency/thread-safe-class-design/
+
 http://stackoverflow.com/questions/19179358/concurrent-vs-serial-queues-in-gcd
+
 https://www.mikeash.com/pyblog/friday-qa-2011-10-14-whats-new-in-gcd.html
-Effective ObjectiveC 2.0 - Item 41
+
+Effective Objective-C 2.0 - Item 41
