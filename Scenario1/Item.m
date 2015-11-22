@@ -10,4 +10,20 @@
 
 @implementation Item
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _subItems = [NSArray array];
+    }
+    return self;
+}
+
+- (void)addsubItem:(NSString *)string
+{
+    NSMutableArray * array = [NSMutableArray arrayWithArray:self.subItems];
+    [array addObject:string];
+    self.subItems = array;
+}
+
 @end

@@ -11,7 +11,7 @@
 @protocol ItemProtocol <NSObject>
 
 
-- (NSUInteger)itemCount;
+- (NSArray *)subItems;
 
-- (void)setItemCount:(NSUInteger)itemCount;
+- (void)addsubItem:(NSString *)string;
 @end

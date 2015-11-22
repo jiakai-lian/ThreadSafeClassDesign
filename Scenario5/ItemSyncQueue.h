@@ -11,7 +11,7 @@
 
 @interface ItemSyncQueue : NSObject<ItemProtocol>
 
-@property(nonatomic, assign) NSUInteger itemCount;
+@property(nonatomic, copy) NSArray *subItems;
 
 
 @end

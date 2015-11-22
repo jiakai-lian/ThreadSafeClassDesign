@@ -10,20 +10,40 @@
 
 @implementation ItemSyncQueue
 
-@synthesize itemCount = _itemCount;
+@synthesize subItems = _subItems;
 
-#pragma mark - Public Properties
-- (NSUInteger)itemCount {
-    __block NSUInteger count;
-    dispatch_sync(self.syncQueue, ^{
-        count = _itemCount;
-    });
-    return count;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _subItems = [NSArray array];
+    }
+    return self;
 }
 
-- (void)setItemCount:(NSUInteger)itemCount {
+#pragma mark - Public Properties
+- (NSArray *)subItems {
+    __block NSArray * array;
     dispatch_sync(self.syncQueue, ^{
-        _itemCount = itemCount;
+        array = _subItems;
+    });
+    return array;
+}
+
+//- (void)setsubItems:(NSArray *)subItemsArray {
+//    __block NSArray * array = subItemsArray.copy;
+//    dispatch_sync(self.syncQueue, ^{
+//        _subItems = array;
+//    });
+//}
+
+- (void)addsubItem:(NSString *)string
+{
+//    __weak typeof(self) weakself = self;
+    dispatch_sync(self.syncQueue, ^{
+        NSMutableArray * array = [NSMutableArray arrayWithArray:_subItems];
+        [array addObject:string];
+        _subItems = array.copy;
     });
 }
 
@@ -32,7 +52,7 @@
     static dispatch_queue_t queue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        queue = dispatch_queue_create("com.jiakai.ItemSyncQueue", DISPATCH_QUEUE_CONCURRENT);
+        queue = dispatch_queue_create("com.jiakai.ItemSyncQueue", DISPATCH_QUEUE_SERIAL);
     });
     
     return queue;

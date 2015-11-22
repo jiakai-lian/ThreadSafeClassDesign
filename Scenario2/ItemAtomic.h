@@ -11,7 +11,7 @@
 
 @interface ItemAtomic : NSObject<ItemProtocol>
 
-@property(atomic, assign) NSUInteger itemCount;
+@property(atomic, copy) NSArray *subItems;
 
 
 @end

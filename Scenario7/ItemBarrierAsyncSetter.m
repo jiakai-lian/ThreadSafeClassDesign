@@ -10,19 +10,38 @@
 
 @implementation ItemBarrierAsyncSetter
 
-@synthesize itemCount = _itemCount;
+@synthesize subItems = _subItems;
 
-- (NSUInteger)itemCount {
-    __block NSUInteger count;
-    dispatch_sync(self.syncQueue, ^{
-        count = _itemCount;
-    });
-    return count;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _subItems = [NSArray array];
+    }
+    return self;
 }
 
-- (void)setItemCount:(NSUInteger)itemCount {
+- (NSArray *)subItems {
+    __block NSArray *array;
+    dispatch_sync(self.syncQueue, ^{
+        array = _subItems;
+    });
+    return array;
+}
+
+//- (void)setsubItems:(NSArray *)subItemsArray {
+//    __block NSArray * array = subItemsArray.copy;
+//    dispatch_barrier_async(self.syncQueue, ^{
+//        _subItems = array;
+//    });
+//}
+
+- (void)addsubItem:(NSString *)string
+{
     dispatch_barrier_async(self.syncQueue, ^{
-        _itemCount = itemCount;
+        NSMutableArray * array = [NSMutableArray arrayWithArray:_subItems];
+        [array addObject:string];
+        self.subItems = array;
     });
 }
 

@@ -9,19 +9,39 @@
 #import "ItemSyncSelf.h"
 
 @implementation ItemSyncSelf
-@synthesize itemCount = _itemCount;
+@synthesize subItems = _subItems;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _subItems = [NSArray array];
+    }
+    return self;
+}
 
 #pragma mark - Public Properties
-- (NSUInteger)itemCount {
+- (NSArray *)subItems {
     @synchronized (self) {
-        return _itemCount;
+        return _subItems;
     }
 }
 
-- (void)setItemCount:(NSUInteger)itemCount {
+//- (void)setsubItems:(NSArray *)subItemsArray {
+//    __block NSArray * array = subItemsArray.copy;
+//    @synchronized (self) {
+//        _subItems = array;
+//    }
+//}
+
+- (void)addsubItem:(NSString *)string
+{
     @synchronized (self) {
-        _itemCount = itemCount;
+    NSMutableArray * array = [NSMutableArray arrayWithArray:self.subItems];
+    [array addObject:string];
+    self.subItems = array;
     }
 }
+
 
 @end

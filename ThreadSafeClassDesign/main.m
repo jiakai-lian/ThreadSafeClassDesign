@@ -15,10 +15,10 @@
 #import "ItemLock.h"
 
 #define TICK   NSDate *startTime = [NSDate date]
-#define TOCK   NSLog(@"%@ Time: %f", NSStringFromClass(item.class), -[startTime timeIntervalSinceNow])
+#define TOCK   NSLog(@"%@ Time: %f subItemsCount: %ld", NSStringFromClass(item.class), -[startTime timeIntervalSinceNow], (unsigned long)[item subItems].count)
 
-static const NSUInteger DISPATCH_QUEUE_COUNT = 100000;
-static const NSUInteger ITERATION_COUNT = 1;
+static const NSUInteger DISPATCH_QUEUE_COUNT = 10000;
+static const NSUInteger ITERATION_COUNT = 100;
 
 void testScenario(id <ItemProtocol> item) {
     @autoreleasepool {
@@ -27,37 +27,27 @@ void testScenario(id <ItemProtocol> item) {
         TICK;
         
         dispatch_apply(DISPATCH_QUEUE_COUNT, queue, ^(size_t i) {
-            [item setItemCount:[item itemCount]+1];
-//            NSLog(@"count = %ld", item.itemCount);
-//            [item itemCount];
+            if(!(i%10))
+            {
+                [item addsubItem:@"subItems"];
+            }
+            else
+            {
+                NSUInteger n = [item subItems].count;
+                n++;
+//                 NSLog(@"count = %ld", n);
+            }
         });
 
         TOCK;
     }
 }
 
-//void test(ItemAtomic * item) {
-//    @autoreleasepool {
-//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//        
-//        TICK;
-//        
-//        dispatch_apply(DISPATCH_QUEUE_COUNT, queue, ^(size_t i) {
-////            [item setItemCount:[item itemCount]+1];
-//            item.itemCount++;
-//            //            NSLog(@"count = %ld", item.itemCount);
-//            //            [item itemCount];
-//        });
-//        
-//        TOCK;
-//    }
-//}
-
 int main(int argc, const char *argv[]) {
     
     for(NSUInteger i=0; i<ITERATION_COUNT; i++)
     {
-        testScenario([[Item alloc] init]);
+//        testScenario([[Item alloc] init]);
         testScenario([[ItemAtomic alloc] init]);
         testScenario([[ItemLock alloc] init]);
         testScenario([[ItemSyncSelf alloc] init]);

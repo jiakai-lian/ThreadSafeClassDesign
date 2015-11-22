@@ -10,37 +10,55 @@
 
 @interface ItemLock()
 
-@property (nonatomic, strong) NSLock *lock;
+@property (nonatomic, strong) NSRecursiveLock *lock;
 
 @end
 
 @implementation ItemLock
 
-@synthesize itemCount = _itemCount;
+@synthesize subItems = _subItems;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _subItems = [NSArray array];
+    }
+    return self;
+}
 
 
 
 #pragma mark - Public Properties
-- (NSUInteger)itemCount {
+- (NSArray *)subItems {
     
     [self.lock lock];
-    NSUInteger count = _itemCount;
+    NSArray * array = _subItems;
     [self.lock unlock];
-    return count;
+    return array;
 }
 
-- (void)setItemCount:(NSUInteger)itemCount {
+- (void)addsubItem:(NSString *)string
+{
     [self.lock lock];
-        _itemCount = itemCount;
+    NSMutableArray * array = [NSMutableArray arrayWithArray:self.subItems];
+    [array addObject:string];
+    self.subItems = array;
     [self.lock unlock];
 }
+
+//- (void)setsubItems:(NSArray *)subItemsArray {
+//    [self.lock lock];
+//    _subItems = subItemsArray.copy;
+//    [self.lock unlock];
+//}
 
 #pragma mark - private Properties
-- (NSLock *)lock {
-    static NSLock  *internalLock = nil;
+- (NSRecursiveLock *)lock {
+    static NSRecursiveLock  *internalLock = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        internalLock = [[NSLock alloc] init];
+        internalLock = [[NSRecursiveLock alloc] init];
     });
     
     return _lock = internalLock;
