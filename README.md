@@ -1,4 +1,6 @@
-# ThreadSafeClassDesign
+# ThreadSafe Class Design
+An experiment  on Objective-C thread safe Model class design.
+
 
 > **One class is either thread safe or it is not.**
 
@@ -8,7 +10,9 @@ Introduction：
 
 Multithreading issue could be very tricky and hard to be fixed.  To prevent random crashes, especially the bad access problem, I did an experiment on different threadsafe implementations and measured corresponding performance metrics.
 
-In this experiment, the numbers of read and write actions are 9 : 1. In other words,  at each test cases, there are 90% read actions, and 10% write actions， It is a similar to real configuration which I did purposely. 
+In this experiment, the numbers of read and write actions are 9 : 1. In other words,  at each test case, there are 90% read actions, and 10% write actions， It is a similar to real configuration which I did purposely. 
+
+Please check these scenario folders for the detail implementations. 
 
 
 Proposed Approaches：
@@ -17,13 +21,13 @@ Proposed Approaches：
 | Class/Queue       | Reader           | Writer  | ThreadSafe| Reason|
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
 | No Protection			| N/A | N/A | N |
-| Atomic      			| N/A | N/A | N | Atomic cannot ensure threadsafe. It can reduce the crashing chances, but unable to prevent it from happening.|
+| Atomic      			| N/A | N/A | N | Atomic cannot ensure threadsafe. It can reduce the chance of crash, but unable to prevent it from happening.|
 | @sychornized(self)	| N/A | N/A | Y | Each actions are excuted exclusively due to the syncorized protection.
 | SerialQueue      		| Sync | Sync | Y | The queue only excute one action at a time
 | SerialQueue      		| Sync | Async | Y |As same as above
-| ConcurrentQueue		| Sync | Sync | N |Although each read and write actions are synchronized to the callers, at an arbitrary time point, it is possible that multi actions are executed on that queue. |
+| ConcurrentQueue		| Sync | Sync | N |Although each read and write actions are synchronized to the callers, at an any time point, it is possible that multi actions are executed on that queue. |
 | ConcurrentQueue		| Sync | Async | N | As same as above
-| ConcurrentQueue		| Sync | BarrierAsync | Y | All the write actions are executed exclusively with each other and read actions. |
+| ConcurrentQueue		| Sync | BarrierAsync | Y | One write action is executed exclusively with other write & read actions. |
 
 
 Another great explanation from StackOverFlow:
@@ -46,6 +50,7 @@ Another great explanation from StackOverFlow:
 
 Performance:
 ---------------------
+The following chart shows average time for 10k actions in each type of implementations. 
 ![Performance Results](https://raw.githubusercontent.com/jiakai-lian/ThreadSafeClassDesign/master/performance.png)
 
 Recommended Approach:
@@ -56,7 +61,7 @@ Recommended Approach:
 FAQ:
 ----
 1. Why lock for read action
-2. How do not use global queue？
+2. How do not use a global queue?
 > Because the global queues are a shared resource and it doesn't make
 > sense to allow a single component to block them for everybody.
 
