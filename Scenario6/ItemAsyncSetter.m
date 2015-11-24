@@ -29,16 +29,9 @@
     return array;
 }
 
-//- (void)setsubItems:(NSArray *)subItemArray {
-//    __block NSArray * array = subItemArray.copy;
-//    dispatch_async(self.syncQueue, ^{
-//        _subItems = array;
-//    });
-//}
-
 - (void)addsubItem:(NSString *)string
 {
-    dispatch_sync(self.syncQueue, ^{
+    dispatch_async(self.syncQueue, ^{
         NSMutableArray * array = [NSMutableArray arrayWithArray:_subItems];
         [array addObject:string];
         self.subItems = array;
