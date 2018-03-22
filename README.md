@@ -23,7 +23,7 @@ Proposed Approaches：
 | No Protection			| N/A | N/A | N |
 | Atomic      			| N/A | N/A | N | Atomic cannot ensure threadsafe. It can reduce the chance of crash, but unable to prevent it from happening.|
 | NSLock	| N/A | N/A | Y | Each actions are excuted exclusively due to the NSLock protection.
-| @sychornized(self)	| N/A | N/A | Y | Each actions are excuted exclusively due to the syncorized protection.
+| @synchornized(self)	| N/A | N/A | Y | Each actions are excuted exclusively due to the syncorized protection.
 | SerialQueue      		| Sync | Sync | Y | The queue only excute one action at a time
 | SerialQueue      		| Sync | Async | Y |As same as above
 | ConcurrentQueue		| Sync | Sync | N |Although each read and write actions are synchronized to the callers, at an any time point, it is possible that multi actions are executed on that queue. |
@@ -105,8 +105,8 @@ Effective Objective-C 2.0 - Item 41
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
 | 无保护			| N/A | N/A | N ||
 | Atomic 			| N/A | N/A | N | 很多人误解，以为设置成atomic就可以保证线程安全， 其实并非如此。具体原因见文末的补充说明|
-| NSLock | N/A | N/A | Y | 互斥锁可以保证锁之间的所有操作都是互斥的。性能基本上和@sychronized相当。|
-| @sychornized(self)	| N/A | N/A | Y | 这种方式是最偷懒省事的办法。性能方面相对要差一些|
+| NSLock | N/A | N/A | Y | 互斥锁可以保证锁之间的所有操作都是互斥的。性能基本上和@synchronized相当。|
+| @synchornized(self)	| N/A | N/A | Y | 这种方式是最偷懒省事的办法。性能方面相对要差一些|
 | SerialQueue | Sync | Sync | Y | 不管是sync 还是async 操作，serial queue可以保证一次只有一个block在执行，所以是线程安全的。
 | SerialQueue | Sync | Async | Y | 同上
 | ConcurrentQueue | Sync | Sync | N |不管是sync write，还是async write 是无法保证线程安全的。因为在任意时间点，可能有多个write block在queue中运行。 |
@@ -119,7 +119,7 @@ Effective Objective-C 2.0 - Item 41
 
 #总结
 ---------------------
-总体来说,**并发读互斥写（Concurrent read，Exclusive write）**是一个比较理想的多线程工作模式， 在确保线程安全同时也保留了多线程的性能优势。在Objective-C中，这种模式的具体实现就是**concurrentQueue+sync read+barrier async write**。当然，如果对于少量代码需要线程安全，同时性能方面要求不高的应用场景来说，**@sychronized**也是一种比较便捷的实现方式。
+总体来说,**并发读互斥写（Concurrent read，Exclusive write）**是一个比较理想的多线程工作模式， 在确保线程安全同时也保留了多线程的性能优势。在Objective-C中，这种模式的具体实现就是**concurrentQueue+sync read+barrier async write**。当然，如果对于少量代码需要线程安全，同时性能方面要求不高的应用场景来说，**@synchronized**也是一种比较便捷的实现方式。
 
 #补充说明
 ----------------------
@@ -135,8 +135,8 @@ Effective Objective-C 2.0 - Item 41
 >
 >而在实际应用中，大部分操作都是多步骤操作，atomic可以在一定程度上减少crash的几率，从而掩盖多线程问题，但是却无法从根本上解决线程安全问题。
 
-- ####为什么说@sychronized（self）的性能差
->@sychronized 所包含的代码片段 一次只允许一个线程执行，同时又会阻塞调用线程， 类似上述表格中Serial queue + dispatch sync 的组合 。一旦这些代码片段同时被多个线程访问，就会对性能造成较大的影响。
+- ####为什么说@synchronized（self）的性能差
+>@synchronized 所包含的代码片段 一次只允许一个线程执行，同时又会阻塞调用线程， 类似上述表格中Serial queue + dispatch sync 的组合 。一旦这些代码片段同时被多个线程访问，就会对性能造成较大的影响。
 
 - ####测试代码中读操作：写操作数量 9：1 的原因说明
 >在实际的项目中，绝大部分情况都是读取数据，只有小部分情况需要写数据。 这样的设置主要是为了模拟实际的使用情况，增加测试结果的可参考性。
